@@ -3,47 +3,44 @@
 #include <unistd.h>
 
 /**
- * _printf - Custom printf function that supports character ('c') and
- *           string ('s') format specifiers.
+ * _printf - Custom printf function
  * @format: A format string that may contain format specifiers.
- *
- * Return:
- * (count) - The total number of characters printed.
+ * Return: (count) - The total number of characters printed.
  */
 int _printf(const char *format, ...)
 {
 	int count;
 	va_list args;
+	char ch;
 
 	va_start(args, format);
 	count = 0;
 
-	while (*format != '\0')
+	while (*format)
 	{
-		if (*format == 'c')
+		if (*format == '%' && *(++format))
 		{
-			/*Character argument*/
-			char c = va_arg(args, int);
-
-			write(1, &c, 1);
-			count++;
-		}
-		else if (*format == 's')
-		{
-			/*String argument*/
-			const char *s = va_arg(args, const char *);
-			size_t len = 0;
-
-			while (s[len] != '\0')
+			if (*format == 'c' || *format == '%')
 			{
-				len++;
+				/* betty-style-disable */
+				ch = (char)va_arg(args, int);
+				write(1, &ch, 1);
+				count++;
+				/* betty-style-enable */
 			}
-			write(1, s, len);
-			count += len;
+			else if (*format == 's')
+			{
+				char *str = va_arg(args, char*);
+
+				while (*str)
+				{
+					write(1, str++, 1);
+					count++;
+				}
+			}
 		}
 		else
 		{
-			/*Non-placeholder character, print as is*/
 			write(1, format, 1);
 			count++;
 		}
