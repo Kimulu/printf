@@ -1,54 +1,52 @@
 #include "main.h"
 #include <stdarg.h>
-#include <unistd.h>
+#include <stdio.h>
 
-/**
- * _printf - Custom printf function
- * @format: A format string that may contain format specifiers.
- * Return: (count) - The total number of characters printed.
- */
 int _printf(const char *format, ...)
 {
-	int count;
-	va_list args;
-	char ch;
+    va_list args;
+    int printed_chars = 0;
 
-	va_start(args, format);
-	count = 0;
+    va_start(args, format);
 
-	while (*format)
-	{
-		if (*format == '%' && *(++format))
-		{
-			if (*format == 'c' || *format == '%')
-			{
-				/* betty-style-disable */
-				ch = (char)va_arg(args, int);
-				write(1, &ch, 1);
-				count++;
-				/* betty-style-enable */
-			}
-			else if (*format == 's')
-			{
-				char *str = va_arg(args, char*);
+    while (*format)
+    {
+        if (*format == '%')
+        {
+            format++;
 
-				while (*str)
-				{
-					write(1, str++, 1);
-					count++;
-				}
-			}
-		}
-		else
-		{
-			write(1, format, 1);
-			count++;
-		}
+            switch (*format)
+            {
+            case 'c':
+                printed_chars += print_char(args);
+                break;
+            case 's':
+                printed_chars += print_str(args);
+                break;
+            case '%':
+                printed_chars += print_37();
+                break;
+            case 'd':
+            case 'i':
+                printed_chars += print_d(args);
+                break;
+            default:
+                _putchar('%');
+                _putchar(*format);
+                printed_chars += 2;
+                break;
+            }
+        }
+        else
+        {
+            _putchar(*format);
+            printed_chars++;
+        }
 
-		format++;
-	}
+        format++;
+    }
 
-	va_end(args);
-	return (count);
+    va_end(args);
+
+    return printed_chars;
 }
-
