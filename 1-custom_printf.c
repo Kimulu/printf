@@ -1,6 +1,5 @@
 #include "main.h"
 #include <unistd.h>
-#include <stdio.h>
 
 /**
  *_printf - produces output according to a format
@@ -20,10 +19,8 @@ format++;
 if (*format == 'd' || *format == 'i')
 {
 int value = va_arg(valist, int);
-char buffer[20];
-int length = sprintf(buffer, "%d", value);
-write(1, buffer, length);
-count += length;
+write(1, &value, 1);
+count++;
 }
 }
 else
