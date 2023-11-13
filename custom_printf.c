@@ -30,6 +30,21 @@ int _printf(const char *format, ...)
             case 'i':
                 printed_chars += print_d(args);
                 break;
+	    case 'b':
+		printed_chars += print_b(args);
+		break;
+	    case 'u':
+		printed_chars += print_unsigned(args)
+		break;
+	    case 'o':
+		printed_chars += print_octal(args);
+		break;
+	    case 'x':
+		printed_chars += print_hex(args);
+		break;
+	    case 'X':
+		printed_chars += print_hex_upper(args);
+		break
             default:
                 _putchar('%');
                 _putchar(*format);

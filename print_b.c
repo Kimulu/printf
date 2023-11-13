@@ -1,4 +1,3 @@
-#include "main.h"
 /**
  * print_binary - helper function to print an unsigned integer in binary.
  * @num: type integer
