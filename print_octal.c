@@ -13,3 +13,20 @@ int print_octal(va_list val)
 
 	return (num_digits);
 }
+/**
+ * print_octal_recursive - helper function
+ * @num: the unsigned integer to print.
+ * Return: the number of octal digits printed.
+ */
+int print_octal_recursive(unsigned int num)
+{
+	int num_digits = 0;
+
+	if (num / 8)
+		num_digits += print_octal_recursive(num / 8);
+
+	_putchar(num % 8 + '0');
+	num_digits++;
+
+	return (num_digits);
+}

@@ -14,3 +14,17 @@ num_digits++;
 }
 return (num_digits);
 }
+/**
+ * print_b - print an unsigned integer in binary.
+ * @val: arguments.
+ * Return: the number of binary digits printed.
+ */
+int print_b(va_list val)
+{
+	unsigned int num = va_arg(val, unsigned int);
+	int num_digits = 0;
+
+	num_digits += print_binary(num);
+
+	return num_digits;
+}

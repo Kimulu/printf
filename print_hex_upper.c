@@ -13,3 +13,26 @@ int print_hex_upper(va_list val)
 
 	return (num_digits);
 }
+/**
+ * print_hex_recursive_upper - helper function
+ * @num: the unsigned integer to print.
+ * Return: the number of hexadecimal digits printed.
+ */
+int print_hex_recursive_upper(unsigned int num)
+{
+	int num_digits = 0;
+
+	if (num / 16)
+		num_digits += print_hex_recursive_upper(num / 16);
+
+	int remainder = num % 16;
+
+	if (remainder < 10)
+		_putchar(remainder + '0');
+	else
+		_putchar(remainder - 10 + 'A');
+
+	num_digits++;
+
+	return (num_digits);
+}
