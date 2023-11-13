@@ -31,10 +31,10 @@ int _printf(const char *format, ...)
                 printed_chars += print_d(args);
                 break;
 	    case 'b':
-		printed_chars += print_b(args);
+		printed_chars += print_binary(args);
 		break;
 	    case 'u':
-		printed_chars += print_unsigned(args)
+		printed_chars += print_unsigned(args);
 		break;
 	    case 'o':
 		printed_chars += print_octal(args);
