@@ -5,6 +5,6 @@
  */
 int print_37(void)
 {
-	_putchar('%');
+	_putchar(37);
 	return (1);
 }
