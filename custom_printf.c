@@ -1,52 +1,48 @@
-#include "main.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include "main.h"
 
+/**
+ * _printf - custom printf function
+ * @format: the format string
+ * @...: the variable arguments to print
+ *
+ * Return: the number of characters printed
+ */
 int _printf(const char *format, ...)
 {
-    va_list args;
-    int printed_chars = 0;
+	va_list args;
+	int printed_chars = 0;
 
-    va_start(args, format);
+	va_start(args, format);
 
-    while (*format)
-    {
-        if (*format == '%')
-        {
-            format++;
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			format++;
 
-            switch (*format)
-            {
-            case 'c':
-                printed_chars += print_char(args);
-                break;
-            case 's':
-                printed_chars += print_str(args);
-                break;
-            case '%':
-                printed_chars += print_37();
-                break;
-            case 'd':
-            case 'i':
-                printed_chars += print_d(args);
-                break;
-            default:
-                _putchar('%');
-                _putchar(*format);
-                printed_chars += 2;
-                break;
-            }
-        }
-        else
-        {
-            _putchar(*format);
-            printed_chars++;
-        }
+			if (*format == 'c')
+				printed_chars += print_char(args);
+			else if (*format == 's')
+				printed_chars += print_str(args);
+			else if (*format == '%')
+				printed_chars += print_37();
+			else if (*format == 'd' || *format == 'i')
+				printed_chars += print_d(args);
+			else
+				printed_chars += (_putchar('%') + _putchar(*format));
+		}
+		else
+		{
+			printed_chars += _putchar(*format);
+		}
 
-        format++;
-    }
+		format++;
+	}
 
-    va_end(args);
+	va_end(args);
 
-    return printed_chars;
+	return (printed_chars);
 }
+
