@@ -9,7 +9,11 @@ int print_b(va_list val)
 	unsigned int num = va_arg(val, unsigned int);
 	int num_digits = 0;
 
-	num_digits += print_binary(num);
+	if (num == 0)
+		_putcahr('0');
+	num_digits++;
+	else
+		num_digits += print_binary(num);
 
 	return (num_digits);
 }
