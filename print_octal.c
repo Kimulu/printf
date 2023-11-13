@@ -24,6 +24,8 @@ int print_octal_recursive(unsigned int num)
 
 	if (num / 8)
 		num_digits += print_octal_recursive(num / 8);
+	else if (num_digits == 0)
+		_putchar('0');
 
 	_putchar(num % 8 + '0');
 	num_digits++;
