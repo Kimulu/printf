@@ -15,7 +15,10 @@ int _printf(const char *format, ...)
 	int printed_chars = 0;
 
 	va_start(args, format);
-
+	if (format == NULL)
+	{
+		return (-1);
+	}
 	while (*format)
 	{
 		if (*format == '%')
