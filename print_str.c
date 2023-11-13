@@ -5,7 +5,6 @@
  * @val: argumen t.
  * Return: the length of the string.
  */
-
 int print_str(va_list val)
 {
 	char *s;
@@ -22,11 +21,9 @@ int print_str(va_list val)
 	}
 	else
 	{
-		
 		len = _strlen(s);
 		for (i = 0; i < len; i++)
 			_putchar(s[i]);
 		return (len);
-		
 	}
 }
