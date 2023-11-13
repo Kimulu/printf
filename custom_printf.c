@@ -30,6 +30,9 @@ int _printf(const char *format, ...)
             case 'i':
                 printed_chars += print_d(args);
                 break;
+	    case 'b':
+		printed_chars += print_b(args);
+		break;
             default:
                 _putchar('%');
                 _putchar(*format);
