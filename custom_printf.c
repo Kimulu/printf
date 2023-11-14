@@ -32,6 +32,7 @@ int _printf(const char *format, ...)
 				printed_chars += print_d(args);
 			else
 				printed_chars += (_putchar('%') + _putchar(*format));
+
 		}
 		else
 		{

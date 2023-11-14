@@ -1,91 +1,59 @@
 #include "main.h"
 /**
+ * print_number - prints an integer.
+ * @n: the integer to print
+ * Return: the number of digits printed
+ */
+int print_number(int n)
+{
+int digit, i = 0;
+int reverse;
+if (n < 0)
+{
+_putchar('-');
+n = -n;
+i++;
+}
+
+if (n == 0)
+{
+_putchar('0');
+return (1);
+}
+reverse = 0;
+while (n != 0)
+{
+digit = n % 10;
+reverse = reverse * 10 + digit;
+n /= 10;
+}
+while (reverse != 0)
+{
+digit = reverse % 10;
+_putchar(digit + '0');
+reverse /= 10;
+i++;
+}
+return (i);
+}
+/**
+ * print_d - prints decimal
+ * @args: argument to print
+ * Return: integer
+ */
+int print_d(va_list args)
+{
+int n = va_arg(args, int);
+return (print_number(n));
+}
+/**
  * print_i - prints integer
  * @args: argument to print
  * Return: integer
  */
 int print_i(va_list args)
 {
-	int n = va_arg(args, int);
-	int num, last = n % 10, digit, exp = 1;
-	int  i = 1;
-
-	n = n / 10;
-	num = n;
-
-	if (last < 0)
-	{
-		_putchar('-');
-		num = -num;
-		n = -n;
-		last = -last;
-		i++;
-	}
-	if (num > 0)
-	{
-		while (num / 10 != 0)
-		{
-			exp = exp * 10;
-			num = num / 10;
-		}
-		num = n;
-		while (exp > 0)
-		{
-			digit = num / exp;
-			_putchar(digit + '0');
-			num = num - (digit * exp);
-			exp = exp / 10;
-			i++;
-		}
-	}
-	_putchar(last + '0');
-
-	return (i);
-}
-
-/**
- * print_d - prints decimal
- * @args: argument to print
- * Return: integer
- */
-
-int print_d(va_list args)
-{
-	int n = va_arg(args, int);
-	int num, last = n % 10, digit;
-	int  i = 1;
-	int exp = 1;
-
-	n = n / 10;
-	num = n;
-
-	if (last < 0)
-	{
-		_putchar('-');
-		num = -num;
-		n = -n;
-		last = -last;
-		i++;
-	}
-	if (num > 0)
-	{
-		while (num / 10 != 0)
-		{
-			exp = exp * 10;
-			num = num / 10;
-		}
-		num = n;
-		while (exp > 0)
-		{
-			digit = num / exp;
-			_putchar(digit + '0');
-			num = num - (digit * exp);
-			exp = exp / 10;
-			i++;
-		}
-	}
-	_putchar(last + '0');
-
-	return (i);
+int n = va_arg(args, int);
+return (print_number(n));
 }
 
