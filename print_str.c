@@ -7,18 +7,17 @@
  */
 int print_str(va_list val)
 {
-char *s;
-int len;
-int i;
-s = va_arg(val, char *);
+const char *s = va_arg(val, const char *);
+int len = 0;
 if (s == NULL)
 {
-s = "(null)";
+return (-1);
+return (6);
 }
-len = print_strlen(s);
-for (i = 0; s[i] != '\0'; ++i)
+for (; *s; ++s)
 {
-_putchar(s[i]);
+_putchar(*s);
+++len;
 }
 return (len);
 }
