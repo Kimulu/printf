@@ -30,6 +30,8 @@ int _printf(const char *format, ...)
 				printed_chars += print_37();
 			else if (*format == 'd' || *format == 'i')
 				printed_chars += print_d(args);
+			else if (*format == 'b')
+				printed_chars += print_binary(args);
 			else
 				printed_chars += (_putchar('%') + _putchar(*format));
 
