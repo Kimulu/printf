@@ -6,8 +6,8 @@
  */
 int _printf(const char * const format, ...)
 {
-	convert p[] = {
-		{"%s", print_s}, {"%c", print_c},
+	convert d[] = {
+		{"%s", print_str}, {"%c", print_char},
 		{"%%", print_37},
 		{"%i", print_i}, {"%d", print_d}, {"%r", print_revs},
 		{"%R", print_rot13}, {"%b", print_bin},
@@ -29,9 +29,9 @@ Here:
 		j = 13;
 		while (j >= 0)
 		{
-			if (p[j].ph[0] == format[i] && p[j].ph[1] == format[i + 1])
+			if (d[j].ph[0] == format[i] && d[j].ph[1] == format[i + 1])
 			{
-				length += p[j].function(args);
+				length += d[j].function(args);
 				i = i + 2;
 				goto Here;
 			}
